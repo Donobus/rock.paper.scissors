@@ -20,20 +20,16 @@ while True:
         print("Cheater! I'm not playing anymore!")
         cheater_response = input("").lower()
 
-        while True:
-            if  "please" in cheater_response
-                del cheater_response
-                print(".....")
-                time.sleep(4)
-                print("Fine, I guess I'll play again.")
-                time.sleep(2)
-                break
+        while "please" not in cheater_response or any(no_answer in cheater_response for no_answer in no_answers):
+            print("...")
+            time.sleep(7)
+            print("Maybe if you asked me nicely...")
+            cheater_response = input("").lower()
 
-            else:
-                print("...")
-                time.sleep(7)
-                print("Maybe if you asked me nicely...")
-                cheater_response = input("").lower()
+        print(".....")
+        time.sleep(4)
+        print("Fine, I guess I'll play again.")
+        time.sleep(2)
 
         continue
 
@@ -72,18 +68,16 @@ Let's try this again...
         lose_response = input("Want to go again? ").lower()
         rematch = True
         
-        while True:
+        while not any(yes_answer in lose_response for yes_answer in yes_answers) or any(no_answer in lose_response for no_answer in no_answers):
 
-            if any(yes_answer in lose_response for yes_answer in yes_answers)
-                rematch = True
-                print("Great! Let's play again!")
-                time.sleep(2)
-                break
-
-            elif rematch == False:
+            if rematch == False:
                 lose_response = input("").lower()
 
             else:
                 print("Guess it's better to quit while I'm ahead anyway. Let me know if you change your mind!")
                 lose_response = input("").lower()
                 rematch = False
+        
+        rematch = True
+        print("Great! Let's play again!")
+        time.sleep(2)
